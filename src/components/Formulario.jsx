@@ -1,11 +1,12 @@
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
+
 const Formulario = () => {
   return (
     <div>
       <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" />
+        <Form.Group className="d-felx mb-3" controlId="controlInput1">
+          <Form.Control type="email" placeholder="Ingrese un color" />
+          <Button>Enviar</Button>
         </Form.Group>
       </Form>
     </div>
