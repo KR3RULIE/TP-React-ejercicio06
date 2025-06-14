@@ -7,3 +7,19 @@
 main {
   flex-grow: 1;
 }
+
+.color {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  margin: 20px;
+}
+
+.sombraBoton {
+  box-shadow: 2px 5px 5px black;
+}
+
+.sombraContenedor {
+  border: 1px solid black;
+  box-shadow: 4px 10px 10px 1px black;
+}

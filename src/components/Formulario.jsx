@@ -2,13 +2,19 @@ import { Form, Button } from "react-bootstrap";
 
 const Formulario = () => {
   return (
-    <div>
-      <Form>
-        <Form.Group className="d-felx mb-3" controlId="controlInput1">
-          <Form.Control type="email" placeholder="Ingrese un color" />
-          <Button>Enviar</Button>
+    <div className="sombraContenedor py-3">
+      <h4 className="ms-3">Administrar colores</h4>
+      <div className="d-flex mb-3 gap-5 bg-info">
+        <div className="color"></div>
+        <Form.Group className="my-auto w-75">
+          <Form.Control type="text" placeholder="Ingrese un color" />
         </Form.Group>
-      </Form>
+      </div>
+      <div className="d-flex mx-4">
+        <Button variant="success" type="button" className="ms-auto sombraBoton">
+          Enviar
+        </Button>
+      </div>
     </div>
   );
 };
