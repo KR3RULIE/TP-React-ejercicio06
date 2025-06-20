@@ -1,30 +1,41 @@
-import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./Formulario.css";
 
-const Formulario = () => {
-  const [color, setColor] = useState("");
-
+const Formulario = ({ color, setColor }) => {
   return (
-    <section className="formulario-section">
+    <section
+      className="formulario-section"
+      style={{
+        boxShadow: color ? `4px 4px 10px ${color}` : "4px 4px 10px black",
+      }}
+    >
       <Form>
         <Form.Group className="mb-3">
           <div className="d-flex gap-2 align-items-center">
             <div
               className="color-preview"
-              style={{ backgroundColor: color || "transparent" }}
+              style={{
+                background: color
+                  ? `linear-gradient(to right, ${color})`
+                  : "transparent",
+              }}
             ></div>
             <Form.Control
-              className="w-50"
               type="text"
               placeholder="Ingrese un color"
               value={color}
-              onChange={(e) => setColor(e.target.value)}
+              onChange={(nuevoColor) => setColor(nuevoColor.target.value)}
             />
           </div>
-          <Button variant="info" type="submit">
-            Enviar
-          </Button>
+          <div className="d-flex">
+            <Button
+              variant="info"
+              type="submit"
+              className="mt-3 ms-auto sombreado"
+            >
+              Agregar color
+            </Button>
+          </div>
         </Form.Group>
       </Form>
     </section>
