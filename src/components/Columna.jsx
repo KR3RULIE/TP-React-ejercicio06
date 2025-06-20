@@ -1,13 +1,18 @@
 import { Container, Row, Col } from "react-bootstrap";
 import CardColor from "./CardColor";
 
-const Columna = ({ colores }) => {
+const Columna = ({ colores, borrarColor }) => {
   return (
     <Container>
       <Row>
         <Col>
           {colores.map((itemColor, indice) => (
-            <CardColor key={indice} nombreColor={itemColor}></CardColor>
+            <CardColor
+              key={`${itemColor}-${indice}`}
+              nombreColor={itemColor}
+              borrarColor={borrarColor}
+              indice={indice}
+            ></CardColor>
           ))}
         </Col>
       </Row>

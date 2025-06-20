@@ -12,6 +12,13 @@ const Formulario = ({ color, setColor }) => {
     setColor("");
   };
 
+  const borrarColor = (indiceDelColor) => {
+    const coloresFiltrados = colores.filter(
+      (item, index) => index !== indiceDelColor
+    );
+    setColores(coloresFiltrados);
+  };
+
   return (
     <section
       className="formulario-section my-3"
@@ -48,7 +55,7 @@ const Formulario = ({ color, setColor }) => {
           </div>
         </Form.Group>
       </Form>
-      <Columna colores={colores}></Columna>
+      <Columna colores={colores} borrarColor={borrarColor}></Columna>
     </section>
   );
 };
