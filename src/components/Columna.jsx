@@ -1,12 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
 import CardColor from "./CardColor";
 
-const Columna = () => {
+const Columna = ({ colores }) => {
   return (
     <Container>
       <Row>
         <Col>
-          <CardColor></CardColor>
+          {colores.map((itemColor, indice) => (
+            <CardColor key={indice} nombreColor={itemColor}></CardColor>
+          ))}
         </Col>
       </Row>
     </Container>

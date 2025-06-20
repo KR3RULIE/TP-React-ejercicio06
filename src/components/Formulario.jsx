@@ -8,13 +8,13 @@ const Formulario = ({ color, setColor }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setColores([...colores, color])
-    setColor("")
+    setColores([...colores, color]);
+    setColor("");
   };
 
   return (
     <section
-      className="formulario-section"
+      className="formulario-section my-3"
       style={{
         boxShadow: color ? `4px 4px 10px ${color}` : "4px 4px 10px black",
       }}
@@ -48,7 +48,7 @@ const Formulario = ({ color, setColor }) => {
           </div>
         </Form.Group>
       </Form>
-      <Columna></Columna>
+      <Columna colores={colores}></Columna>
     </section>
   );
 };
