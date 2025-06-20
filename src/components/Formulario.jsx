@@ -1,5 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import "./Formulario.css";
+import Columna from "./Columna";
 
 const Formulario = ({ color, setColor }) => {
   return (
@@ -38,6 +39,7 @@ const Formulario = ({ color, setColor }) => {
           </div>
         </Form.Group>
       </Form>
+      <Columna></Columna>
     </section>
   );
 };
