@@ -9,7 +9,7 @@ function App() {
       className="contenedorPadre"
       style={{
         background: color
-          ? `linear-gradient(to right, ${color}, ${color})`
+          ? `linear-gradient(to top, ${color}, white)`
           : `transparent`,
       }}
     >

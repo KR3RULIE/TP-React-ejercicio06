@@ -1,8 +1,17 @@
 import { Form, Button } from "react-bootstrap";
 import "./Formulario.css";
 import Columna from "./Columna";
+import { useState } from "react";
 
 const Formulario = ({ color, setColor }) => {
+  const [colores, setColores] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setColores([...colores, color])
+    setColor("")
+  };
+
   return (
     <section
       className="formulario-section"
@@ -10,7 +19,7 @@ const Formulario = ({ color, setColor }) => {
         boxShadow: color ? `4px 4px 10px ${color}` : "4px 4px 10px black",
       }}
     >
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <div className="d-flex gap-2 align-items-center">
             <div
@@ -25,7 +34,7 @@ const Formulario = ({ color, setColor }) => {
               type="text"
               placeholder="Ingrese un color"
               value={color}
-              onChange={(nuevoColor) => setColor(nuevoColor.target.value)}
+              onChange={(e) => setColor(e.target.value)}
             />
           </div>
           <div className="d-flex">
