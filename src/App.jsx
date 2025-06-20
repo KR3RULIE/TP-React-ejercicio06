@@ -4,17 +4,15 @@ import Formulario from "./components/Formulario";
 function App() {
   return (
     <>
-      <main>
-        <section className="container">
-          <h1 className="text-center">Ejercicio 05</h1>
-          <Formulario />
-        </section>
+      <main className="container my-4">
+        <h1 className="text-center">¡Colorin!</h1>
+        <Formulario />
       </main>
       <footer className="bg-dark text-light text-center py-2 fs-5">
         <p>
           By <a href="https://github.com/KR3RULIE">KR3RULIE</a>
         </p>
-        <p>&copy; Todos los derechos reservaos</p>
+        <p>&copy; Todos los derechos reservados</p>
       </footer>
     </>
   );

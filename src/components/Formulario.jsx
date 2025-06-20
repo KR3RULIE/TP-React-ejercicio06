@@ -1,21 +1,33 @@
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import "./Formulario.css";
 
 const Formulario = () => {
+  const [color, setColor] = useState("");
+
   return (
-    <div className="sombraContenedor py-3">
-      <h4 className="ms-3">Administrar colores</h4>
-      <div className="d-flex mb-3 gap-5 bg-info">
-        <div className="color"></div>
-        <Form.Group className="my-auto w-75">
-          <Form.Control type="text" placeholder="Ingrese un color" />
+    <section className="formulario-section">
+      <Form>
+        <Form.Group className="mb-3">
+          <div className="d-flex gap-2 align-items-center">
+            <div
+              className="color-preview"
+              style={{ backgroundColor: color || "transparent" }}
+            ></div>
+            <Form.Control
+              className="w-50"
+              type="text"
+              placeholder="Ingrese un color"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+          <Button variant="info" type="submit">
+            Enviar
+          </Button>
         </Form.Group>
-      </div>
-      <div className="d-flex mx-4">
-        <Button variant="success" type="button" className="ms-auto sombraBoton">
-          Enviar
-        </Button>
-      </div>
-    </div>
+      </Form>
+    </section>
   );
 };
 
