@@ -1,4 +1,4 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Col } from "react-bootstrap";
 import "./Formulario.css";
 
 const CardColor = ({ nombreColor, borrarColor, indice }) => {
@@ -10,40 +10,42 @@ const CardColor = ({ nombreColor, borrarColor, indice }) => {
     }
   };
   return (
-    <Card className="my-3">
-      <Card.Body>
-        <div
-          className="tamanio w-auto rounded"
-          style={{
-            background: `linear-gradient(to right, ${nombreColor})`,
-          }}
-        ></div>
+    <Col sm={12} md={6} lg={4}>
+      <Card className="my-3">
+        <Card.Body>
+          <div
+            className="tamanio w-auto rounded"
+            style={{
+              background: `linear-gradient(to right, ${nombreColor})`,
+            }}
+          ></div>
 
-        <div className="d-flex align-items-center justify-content-center gap-2 my-3">
-          <Card.Text>
-            {solidoOGradiente()}
-            <span
-              style={{
-                background: `linear-gradient(to right, ${nombreColor})`,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                display: "inline-block",
-              }}
-            >
-              {nombreColor.toUpperCase()}
-            </span>
-          </Card.Text>
-        </div>
+          <div className="d-flex align-items-center justify-content-center gap-2 my-3">
+            <Card.Text>
+              {solidoOGradiente()}
+              <span
+                style={{
+                  background: `linear-gradient(to right, ${nombreColor})`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  display: "inline-block",
+                }}
+              >
+                {nombreColor.toUpperCase()}
+              </span>
+            </Card.Text>
+          </div>
 
-        <Button
-          variant="danger"
-          className="d-flex mx-auto"
-          onClick={() => borrarColor(indice)}
-        >
-          🗑
-        </Button>
-      </Card.Body>
-    </Card>
+          <Button
+            variant="danger"
+            className="d-flex mx-auto"
+            onClick={() => borrarColor(indice)}
+          >
+            🗑
+          </Button>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 
