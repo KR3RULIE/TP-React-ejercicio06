@@ -5,16 +5,14 @@ const Columna = ({ colores, borrarColor }) => {
   return (
     <Container>
       <Row>
-        <Col>
-          {colores.map((itemColor, indice) => (
-            <CardColor
-              key={`${itemColor}-${indice}`}
-              nombreColor={itemColor}
-              borrarColor={borrarColor}
-              indice={indice}
-            ></CardColor>
-          ))}
-        </Col>
+        {colores.map((itemColor, indice) => (
+          <CardColor
+            key={`${itemColor}-${indice}`}
+            nombreColor={itemColor}
+            borrarColor={borrarColor}
+            indice={indice}
+          ></CardColor>
+        ))}
       </Row>
     </Container>
   );
