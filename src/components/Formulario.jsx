@@ -3,11 +3,16 @@ import "./Formulario.css";
 import Columna from "./Columna";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { leerColor } from "../helpers/queries.js";
+import Swal from "sweetalert2";
 
 const Formulario = ({ color, setColor }) => {
-  const coloresLocalstorage =
-    JSON.parse(localStorage.getItem("listaColores")) || [];
-  const [colores, setColores] = useState(coloresLocalstorage);
+  const [listaColores, setListaColores] = useState([]);
+
+  useEffect(() => {
+    obtenerColores();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -15,13 +20,22 @@ const Formulario = ({ color, setColor }) => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    console.log("desde use efect");
-    localStorage.setItem("listaColores", JSON.stringify(colores));
-  }, [colores]);
+  const obtenerColores = async () => {
+    const repuesta = await leerColor();
+    if (repuesta.status === 200) {
+      const datos = await repuesta.json();
+      setListaColores(datos);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ocurrio un error al intetar cargar los colores",
+      });
+    }
+  };
 
-  const agregarColores = (data) => {
-    setColores([...colores, data.inputColors]);
+  const agregarColores = async (data) => {
+    console.log(data);
     reset();
     setColor("white");
   };
@@ -54,13 +68,13 @@ const Formulario = ({ color, setColor }) => {
             <Form.Control
               type="text"
               placeholder="Ingrese un color"
-              {...register("inputColors", {
+              {...register("color", {
                 required: "La tarea es un dato obligatorio",
                 onChange: (e) => setColor(e.target.value),
               })}
             />
           </div>
-          <div className="d-flex">
+          <div className="d-flex gap-2">
             <Button
               variant="info"
               type="submit"
@@ -68,10 +82,18 @@ const Formulario = ({ color, setColor }) => {
             >
               Agregar color
             </Button>
+            <Button
+              variant="success"
+              type="button"
+              className="mt-3 sombreado"
+              onClick={obtenerColores}
+            >
+              Cargar colores BD
+            </Button>
           </div>
         </Form.Group>
       </Form>
-      <Columna colores={colores} borrarColor={borrarColor}></Columna>
+      <Columna listaColores={listaColores} borrarColor={borrarColor}></Columna>
     </section>
   );
 };
