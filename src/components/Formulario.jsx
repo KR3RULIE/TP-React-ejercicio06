@@ -44,6 +44,7 @@ const Formulario = ({ color, setColor }) => {
       });
       reset();
       setColor("white");
+      actualizarTabla();
     } else {
       Swal.fire({
         title: "¡Error!",
@@ -51,6 +52,12 @@ const Formulario = ({ color, setColor }) => {
         icon: "error",
       });
     }
+  };
+
+  const actualizarTabla = async () => {
+    const respuestaColores = await leerColor();
+    const coloresActualizados = await respuestaColores.json();
+    setListaColores(coloresActualizados);
   };
 
   return (
@@ -99,7 +106,10 @@ const Formulario = ({ color, setColor }) => {
           </div>
         </Form.Group>
       </Form>
-      <Columna listaColores={listaColores} setListaColores={setListaColores}></Columna>
+      <Columna
+        listaColores={listaColores}
+        actualizarTabla={actualizarTabla}
+      ></Columna>
     </section>
   );
 };

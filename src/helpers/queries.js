@@ -21,14 +21,14 @@ export const obtenerColorPorID = async (id) => {
   }
 };
 
-export const crearColor = async (tareaNueva) => {
+export const crearColor = async (colorNuevo) => {
   try {
     const respuesta = await fetch(urlcolores, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tareaNueva),
+      body: JSON.stringify(colorNuevo),
     });
     return respuesta;
   } catch (error) {
@@ -37,14 +37,14 @@ export const crearColor = async (tareaNueva) => {
   }
 };
 
-export const editarColor = async (tareaEditada, id) => {
+export const editarColor = async (colorEditado, id) => {
   try {
     const respuesta = await fetch(urlcolores + `/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tareaEditada),
+      body: JSON.stringify(colorEditado),
     });
     return respuesta;
   } catch (error) {
