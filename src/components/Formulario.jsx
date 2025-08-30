@@ -3,7 +3,7 @@ import "./Formulario.css";
 import Columna from "./Columna";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { leerColor } from "../helpers/queries.js";
+import { crearColor, leerColor } from "../helpers/queries.js";
 import Swal from "sweetalert2";
 
 const Formulario = ({ color, setColor }) => {
@@ -35,16 +35,22 @@ const Formulario = ({ color, setColor }) => {
   };
 
   const agregarColores = async (data) => {
-    console.log(data);
-    reset();
-    setColor("white");
-  };
-
-  const borrarColor = (indiceDelColor) => {
-    const coloresFiltrados = colores.filter(
-      (item, index) => index !== indiceDelColor
-    );
-    setColores(coloresFiltrados);
+    const respuesta = await crearColor(data);
+    if (respuesta.status === 201) {
+      Swal.fire({
+        title: "Color creado!",
+        text: `El color "${data.color}" fue creado exitosamente`,
+        icon: "success",
+      });
+      reset();
+      setColor("white");
+    } else {
+      Swal.fire({
+        title: "¡Error!",
+        text: `Ocurrio un error al intentar crear el color "${data.color}"`,
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -93,7 +99,7 @@ const Formulario = ({ color, setColor }) => {
           </div>
         </Form.Group>
       </Form>
-      <Columna listaColores={listaColores} borrarColor={borrarColor}></Columna>
+      <Columna listaColores={listaColores} setListaColores={setListaColores}></Columna>
     </section>
   );
 };

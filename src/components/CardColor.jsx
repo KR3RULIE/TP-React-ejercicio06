@@ -1,7 +1,9 @@
 import { Card, Button, Col } from "react-bootstrap";
 import "./Formulario.css";
+import Swal from "sweetalert2";
+import { borrarColorPorID, leerColor } from "../helpers/queries";
 
-const CardColor = ({ nombreColor, borrarColor, indice }) => {
+const CardColor = ({ nombreColor, _id, setListaColores }) => {
   const solidoOGradiente = () => {
     if (nombreColor.includes(",")) {
       return "GRADIENTE: ";
@@ -39,7 +41,38 @@ const CardColor = ({ nombreColor, borrarColor, indice }) => {
           <Button
             variant="danger"
             className="d-flex mx-auto"
-            onClick={() => borrarColor(indice)}
+            onClick={() => {
+              Swal.fire({
+                title: "Estas seguro/a?",
+                text: "Esta acción es irreversible!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, borralo!",
+                cancelButtonText: "No, no lo borres",
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  const respuesta = await borrarColorPorID(_id);
+                  if (respuesta.status === 200) {
+                    Swal.fire({
+                      title: "Eliminado!",
+                      text: `El color "${nombreColor}" fue eliminado exitosamente`,
+                      icon: "success",
+                    });
+                    const respuestaColores = await leerColor();
+                    const coloresActualizados = await respuestaColores.json();
+                    setListaColores(coloresActualizados);
+                  } else {
+                    Swal.fire({
+                      title: "Error!",
+                      text: `Error al intentar borrar el color "${nombreColor}"`,
+                      icon: "error",
+                    });
+                  }
+                }
+              });
+            }}
           >
             🗑
           </Button>

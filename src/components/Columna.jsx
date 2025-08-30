@@ -1,7 +1,7 @@
 import { Container, Row } from "react-bootstrap";
 import CardColor from "./CardColor";
 
-const Columna = ({ listaColores, borrarColor }) => {
+const Columna = ({ listaColores , setListaColores }) => {
   return (
     <Container>
       <Row>
@@ -9,8 +9,8 @@ const Columna = ({ listaColores, borrarColor }) => {
           <CardColor
             key={itemColor._id}
             nombreColor={itemColor.color}
-            borrarColor={borrarColor}
-            indice={itemColor._id}
+            _id={itemColor._id}
+            setListaColores={setListaColores}
           ></CardColor>
         ))}
       </Row>
